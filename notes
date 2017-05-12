@@ -10,8 +10,8 @@ Ideas:
 
 Observaions:
 1. anomalies in chla
-2. chla box plot- datat not behaving well 
-3. pyhco box plt- a little better bevaved but still anomolies
+2. chla box plot- data not behaving well 
+3. pyhco box plot- a little better bevaved but still anomolies
 
 Errors:
 * trouble with doing a density plat: plot(density(log1p(dat2015$chla_ugl))) Error in density.default(log1p(dat2015$chla_ugl)) : 
