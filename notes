@@ -9,7 +9,7 @@ Ideas:
 #put health criteria on x axis and sample averages on y axis
 
 Observaions:
-1.na's in station_id, station_descrip, sample-method, sample_depth,dilution, water_temp(1185),Chla 
+1.na's in station_id, station_descrip, sample-method, sample_depth,dilution, water_temp(1185),Chla (69),phyco (2)
 2. anomalies in phyco
 3. chla box plot- data not behaving well 
 4. pyhco box plot- a little better bevaved but still anomolies
