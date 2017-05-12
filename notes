@@ -19,6 +19,8 @@ Observaions:
 8. mean phyco[1] 14.47567
 9. max phyco[1] 687.86
 10. min phyco [1] -17.16
+11.SD chla [1] 1.286419
+12 SD phyco [1] 50.57064
 
 Errors:
 * trouble with doing a density plat: plot(density(log1p(dat2015$chla_ugl))) Error in density.default(log1p(dat2015$chla_ugl)) : 
