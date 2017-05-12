@@ -9,9 +9,15 @@ Ideas:
 #put health criteria on x axis and sample averages on y axis
 
 Observaions:
-1. anomalies in chla
+1. anomalies in phyco
 2. chla box plot- data not behaving well 
 3. pyhco box plot- a little better bevaved but still anomolies
+4. mean chla [1] 0.7994273
+5. max chla [1] 19.26
+6. min [1] 0
+7. mean phyco[1] 14.47567
+8. max phyco[1] 687.86
+9. min phyco [1] -17.16
 
 Errors:
 * trouble with doing a density plat: plot(density(log1p(dat2015$chla_ugl))) Error in density.default(log1p(dat2015$chla_ugl)) : 
