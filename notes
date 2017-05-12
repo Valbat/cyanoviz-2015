@@ -21,6 +21,8 @@ Observaions:
 10. min phyco [1] -17.16
 11.SD chla [1] 1.286419
 12 SD phyco [1] 50.57064
+13. IQR [1] 0.59
+14. IQR [1] 7.32
 
 Errors:
 * trouble with doing a density plat: plot(density(log1p(dat2015$chla_ugl))) Error in density.default(log1p(dat2015$chla_ugl)) : 
