@@ -1,0 +1,53 @@
+Ideas:
+#try rounding to the nearest tenth and looking at data with a histogram
+#try ranking data from smallest to highest
+#boxplot to see how data behaves 
+#look at the way the data values group together
+#look at the mean and find the CLT,ranges,variances,standard deviations
+#try comparison by depth
+#Put data into context-
+#put health criteria on x axis and sample averages on y axis
+
+Observaions:
+1.na's in station_id, station_descrip, sample-method, sample_depth,dilution, water_temp(1185),Chla (69),phyco (2)
+2. anomalies in phyco
+3. chla box plot- data not behaving well 
+4. pyhco box plot- a little better bevaved but still anomolies
+5. mean chla [1] 0.7994273
+6. max chla [1] 19.26
+7. min [1] 0
+8. mean phyco[1] 14.47567
+9. max phyco[1] 687.86
+10. min phyco [1] -17.16
+11.SD chla [1] 1.286419
+12 SD phyco [1] 50.57064
+13. IQR [1] 0.59
+14. IQR [1] 7.32
+
+Errors:
+* trouble with doing a density plat: plot(density(log1p(dat2015$chla_ugl))) Error in density.default(log1p(dat2015$chla_ugl)) : 
+  'x' contains missing values
+  
+*  hist(log1p(dat2015$phyco_ugl)) Warning message: In log1p(dat2015$phyco_ugl) : NaNs produced
+
+
+
+R questions
+1. Can I use the R equation below to order data from smallest to highest?
+    set.seed(1)
+    x <- sample(1:50, 30) 
+
+    ## Make a vector to store the sorted x values
+    xx = integer(length(x))
+
+    ## i is the index, ir is the ith "rank" value
+    i = 0
+    for(ir in rank(x)){
+        i = i + 1
+        xx[ir] = x[i]
+    }
+
+    all(xx==x[order(x)])
+    [1] TRUE
+
+
