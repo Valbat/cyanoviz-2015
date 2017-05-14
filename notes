@@ -31,3 +31,23 @@ Errors:
 *  hist(log1p(dat2015$phyco_ugl)) Warning message: In log1p(dat2015$phyco_ugl) : NaNs produced
 
 
+
+R questions
+1. Can I use the R equation below to order data from smallest to highest?
+    set.seed(1)
+    x <- sample(1:50, 30) 
+
+    ## Make a vector to store the sorted x values
+    xx = integer(length(x))
+
+    ## i is the index, ir is the ith "rank" value
+    i = 0
+    for(ir in rank(x)){
+        i = i + 1
+        xx[ir] = x[i]
+    }
+
+    all(xx==x[order(x)])
+    [1] TRUE
+
+
