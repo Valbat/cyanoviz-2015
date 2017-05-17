@@ -15,6 +15,7 @@ count_2015
 
 
 
+
 #scatter plots in ggplot
 chla_gg <- ggplot(data=dat2015, mapping = aes(x=sample_date,y=chla_ugl)) + 
   geom_point() +
@@ -58,7 +59,7 @@ Type 'q()' to quit R.
 > 
 > 
   > dat2015 <- read.csv("data_clean_2015.csv", stringsAsFactors = FALSE)
-> dat2015 <- read.csv("data_clean_2015.csv", stringsAsFactors = FALSE) %>% filter(!is.na(chla_ugl))
+>
 Error: could not find function "%>%"
 > View(dat2015)
 > library(dplyr)
@@ -112,3 +113,13 @@ min(dat2015$phyco_ugl, na.rm=TRUE
 summary(dat2015)
 sd(dat2015$chla_ugl,na.rm=TRUE)
 IQR(dat2015$chla_ugl,na.rm=TRUE)
+#rror in library(zoo) : there is no package called ‘zoo’
+install.packages("magrittr")
+
+?indexing
+  read.csv(dat2015$chla_ugl) %>%
+  subset(variable_a > x) %>%
+  transform(variable_c = variable_a/variable_b) %>%
+  head(100)
+help.start()
+
