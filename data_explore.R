@@ -1,11 +1,11 @@
+
 library(dplyr)
 library(ggplot2)
 
 #removing chla NA's need to be smarter about this later
-dat2015 <- read.csv("data_clean_2015.csv", stringsAsFactors = FALSE) %>%
-  filter(!is.na(chla_ugl))
+dat2015 <- read.csv("data_clean_2015.csv", stringsAsFactors = FALSE) %>%filter(!is.na(chla_ugl))
 
-tbl_df(dat2015)
+summarysumtbl_df(dat2015)
 count_2015 <- dat2015 %>% library(dplyr)
   group_by(waterbody_id) %>% 
   count()
@@ -111,7 +111,7 @@ max(dat2015$phyco_ugl, na.rm=TRUE)
 min(dat2015$phyco_ugl, na.rm=TRUE
     
 summary(dat2015)
-sd(dat2015$chla_ugl,na.rm=TRUE)
+summarydat2015$datsummarysd(dat2015$chla_ugl,na.rm=TRUE)
 IQR(dat2015$chla_ugl,na.rm=TRUE)
 #rror in library(zoo) : there is no package called ‘zoo’
 install.packages("magrittr")
@@ -122,4 +122,28 @@ install.packages("magrittr")
   transform(variable_c = variable_a/variable_b) %>%
   head(100)
 help.start()
+dat2015%>%filter(phyco_ugl>.01)
+mean(dat2015$phyco_ugl, na.rm=TRUE)
+min(dat2015$phyco_ugl, na.rm=TRUE)
+
+nonegphyco <- filter(dat2015,phyco_ugl>0.01)
+mean(nonegphyco$phyco_ugl,na.rm=T)
+min(nonegphyco$phyco_ugl, na.rm=TRUE)
+hist(nonegphyco$phyco_ugl)
+hist(log1p(dat2015$chla_ugl))
+plot(density(log1p(nonegphyco$phyco_ugl)))
+boxplot(nonegphyco$phyco_ugl)
+boxplot(log1p(nonegphyco$phyco_ugl))
+boxplot(log1p(nonegphyco$phyco_ugl)~nonegphyco$state)
+
+plot(log1p(nonegphyco$PTL),log1p(nonegphyco$phyco_ugl)
+     
+summary(dat2015$sample_temp_c)
+boxplot(log1p(dat2015$chla_ugl)~dat2015$chla_ugl$state)
+boxplot(dat2015$chla_ugl)
+boxplot(log1p(dat2015$chla_ugl))
+boxplot(log1p(dat2015$chla_ugl)~dat2015$state)
+
+table(dat2015$sample_temp_c)
+table(dat2015$chla_ugl)
 
