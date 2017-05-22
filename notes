@@ -8,6 +8,12 @@ Ideas:
 #Put data into context-
 #put health criteria on x axis and sample averages on y axis
 
+#look at the CLT
+#Occurrances of sample analysis (compare highest analysis with date and location) 
+#look at the highest 10 sample analysis per state by time 
+#then plot against health criteria
+
+
 Observaions:
 1.na's in station_id, station_descrip, sample-method, sample_depth,dilution, water_temp(1185),Chla (69),phyco (2)
 2. anomalies in phyco
@@ -18,17 +24,19 @@ Observaions:
 7. min [1] 0
 8. mean phyco[1] 14.47567
 9. max phyco[1] 687.86
-10. min phyco [1] -17.16
+10. min phyco [1] -17.16 (0.05 for phyco>0.01)
 11.SD chla [1] 1.286419
 12 SD phyco [1] 50.57064
 13. IQR [1] 0.59
 14. IQR [1] 7.32
 15. RIWW has really high numbers on 8/21?? ranging from 7-687
 
-Errors:
-* error with creating density polt for phyco
+16. data.frame 2792 obs.of 30 variables
 
-*  hist(log1p(dat2015$phyco_ugl)) Warning message: In log1p(dat2015$phyco_ugl) : NaNs produced
+Errors:
+* error with creating density polt for phyco-resolved
+
+*  hist(log1p(dat2015$phyco_ugl)) Warning message: In log1p(dat2015$phyco_ugl) : NaNs produced-resolved
 
 
 
@@ -49,5 +57,6 @@ R questions
 
     all(xx==x[order(x)])
     [1] TRUE
-
+    
+2. Is there a R equation for calculating the CLT?
 
