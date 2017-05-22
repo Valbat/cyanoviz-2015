@@ -122,7 +122,7 @@ install.packages("magrittr")
   transform(variable_c = variable_a/variable_b) %>%
   head(100)
 help.start()
-dat2015%>%filter(phyco_ugl>.01)
+
 mean(dat2015$phyco_ugl, na.rm=TRUE)
 min(dat2015$phyco_ugl, na.rm=TRUE)
 
@@ -146,4 +146,36 @@ boxplot(log1p(dat2015$chla_ugl)~dat2015$state)
 
 table(dat2015$sample_temp_c)
 table(dat2015$chla_ugl)
+install.packages("reshape")
+str(dat2015)
+str(dat2015$chla_ugl)
 
+?table
+
+table(dat2015$sample_temp_c)
+table(nonegphyco$phyco_ugl)
+
+read.csv(nonegphyco$phyco_ugl) %>%
+  subset(variable_a > x) %>%
+  transform(variable_c = variable_a/variable_b) %>%
+  head(100)
+min(nonegphyco$phyco_ugl)
+
+> stem(nonegphyco$phyco_ugl)
+fivenum(nonegphyco$phyco_ugl)
+str(nonegphyco)
+
+install.packages("foreach")
+library(foreach)
+foreach(i=1:100)%do%rnorm(i)
+phycororder <- nonegphyco[order(-phyco_ugl),]
+
+> chlaorder <- dat2015[order(-dat2015$chla_ugl),]
+> View(chlaorder)
+> head(chlaorder)
+chlast <- chlaorder[1:50,c(6,7,16,22,25)]
+
+mergenonegphyco <- filter(dat2015,phyco_ugl>0.01)
+phycoorder <- nonegphyco[order(-nonegphyco$phyco_ugl),]
+phycost <- phycoorder[1:50,c(6,7,16,22,26)]
+> merge(chlast,phycost,by="state")
