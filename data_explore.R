@@ -3,7 +3,7 @@ library(dplyr)
 library(ggplot2)
 
 #removing chla NA's need to be smarter about this later
-dat2015 <- read.csv("data_clean_2015.csv", stringsAsFactors = FALSE) %>%filter(!is.na(chla_ugl))
+(dat2015 <- read.csv("data_clean_2015.csv", stringsAsFactors = FALSE) %>%filter(!is.na(chla_ugl))
 
 summarysumtbl_df(dat2015)
 count_2015 <- dat2015 %>% library(dplyr)
@@ -31,12 +31,6 @@ ggplot(dat2015,aes(station_longitude,station_latitude, color = state)) +
 
 
 ggplot(data=dat2015,mapping=aes(x=sample_date,y=Chla_ug))+geomp_point(mapping=aes(color=waterbody_id))+geom_smooth()
-#try rounding to the nearest tenth and looking at data with a histogram
-#try ranking data from smallest to highest
-#boxplot to see how data behaves
-#look at the way the data vakues group together
-#look at the mean and find the CLT,ranges,variances,standard deviations
-#try comparison by depth
 
 R version 3.2.2 (2015-08-14) -- "Fire Safety"
 Copyright (C) 2015 The R Foundation for Statistical Computing
@@ -169,13 +163,25 @@ install.packages("foreach")
 library(foreach)
 foreach(i=1:100)%do%rnorm(i)
 phycororder <- nonegphyco[order(-phyco_ugl),]
-
+;
 > chlaorder <- dat2015[order(-dat2015$chla_ugl),]
 > View(chlaorder)
 > head(chlaorder)
-chlast <- chlaorder[1:50,c(6,7,16,22,25)]
+chlast <- chlaorder[1:50,c(6,7,16,25)]
 
 mergenonegphyco <- filter(dat2015,phyco_ugl>0.01)
 phycoorder <- nonegphyco[order(-nonegphyco$phyco_ugl),]
-phycost <- phycoorder[1:50,c(6,7,16,22,26)]
-> merge(chlast,phycost,by="state")
+phycost <- phycoorder[1:50,c(6,7,16,26)]
+>merge(chlast,phycost,by="state")
+library(tidyverse)
+library(dplyr)
+mrg <- merge(chlast,phycost,by="state")
+phycost<-data.frame(t(phycost))
+agphyco <- aggregate(nonegphyco$phyco_ugl,list(nonegphyco$state),mean)
+agchla <- aggregate(dat2015$chla_ugl,list(dat2015$state),mean)
+> mrgag <- merge(agchla,agphyco,by="Group.1")
+> mrgag <- merge(agchla,agphyco,by="Group.1")
+merge(phycoorder,)
+
+
+
