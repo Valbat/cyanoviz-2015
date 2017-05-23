@@ -32,7 +32,9 @@ Observaions:
 15. RIWW has really high numbers on 8/21?? ranging from 7-687
 
 16. data.frame 2792 obs.of 30 variables
-17. Dilution column needs clean up 
+17. Dilution column needs clean up
+18. Most of the samples were taken with Beagle, only 13 other. 
+
 
 Errors:
 * error with creating density polt for phyco-resolved
@@ -43,4 +45,4 @@ Errors:
 
 R questions
 1. Is there a R equation for calculating the CLT?
-2. How do I put a title on the colums of mrgag?
+2. I made a data frome of descending order of chla and phyco and when I merged the two they did not keep the descending order. Why?
