@@ -45,4 +45,10 @@ Errors:
 
 R questions
 1. Is there a R equation for calculating the CLT?
-2. I made a data frome of descending order of chla and phyco and when I merged the two they did not keep the descending order. Why?
+2. I made a data frome of descending order of chla and phyco and when I merged the two they did not keep the descending order. 
+Why? Because I merged by State. Is there a way to merge by descending order? 
+
+
+Project Questions
+Do we want to see a relationship between states?
+
