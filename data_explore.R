@@ -121,7 +121,7 @@ mean(dat2015$phyco_ugl, na.rm=TRUE)
 min(dat2015$phyco_ugl, na.rm=TRUE)
 
 nonegphyco <- filter(dat2015,phyco_ugl>0.01)
-mean(nonegphyco$phyco_ugl,na.rm=T)
+tavlemean(nonegphyco$phyco_ugl,na.rm=T)
 min(nonegphyco$phyco_ugl, na.rm=TRUE)
 hist(nonegphyco$phyco_ugl)
 hist(log1p(dat2015$chla_ugl))
@@ -183,5 +183,67 @@ agchla <- aggregate(dat2015$chla_ugl,list(dat2015$state),mean)
 > mrgag <- merge(agchla,agphyco,by="Group.1")
 merge(phycoorder,)
 
+library(tidyverse)
+library(dplyr)
+dat2015
+dat2015 <- read.csv("data_clean_2015.csv", stringsAsFactors = FALSE) %>%filter(!is.na(chla_ugl))
+dat2015 <- filter(dat2015, phyco_ugl>0.01)
+dat2015 <- filter(dat2015,chla_ugl>0.0)
+nonegphyco <- filter(dat2015,phyco_ugl>0.01)
 
+dilutiontbl <- table(dat2015$dilution)
+mrgag <- merge(agchla,agphyco,by="Group.1")
+agphyco <- aggregate(nonegphyco$phyco_ugl,list(nonegphyco$state),mean)
+agchla <- aggregate(dat2015$chla_ugl,list(dat2015$state),mean)
+> mrgag <- merge(agchla,agphyco,by="Group.1")
+colnames(mrgag) <- c("State","Chla","Phyco")
 
+#got errors for both
+plot(mrgag$Phyco,mgrag$State)
+
+filter(!is.na(chla_ugl)%>%filter(!is.na(phyco_ugl)))
+
+chlaorder <- dat2015[order(-dat2015$chla_ugl),]
+chlast <- chlaorder[1:50,c(6,7,16,25)]
+phycoorder <- dat2015[order(-dat2015$phyco_ugl),]
+phycost <- phycoorder[1:50,c(6,7,16,26)]
+mrg <- merge(chlast,phycost,by="state")
+mrg$waterbody_name.x
+mrg$waterbody_name.y
+mrg%>%group_by(waterbody_name.x)%>%group_by(waterbody_name.y)
+
+library(ggplot2)
+
+chla_gg <- ggplot(data=dat2015, mapping = aes(x=sample_date,y=chla_ugl)) + 
+  +     geom_point() +
+  +     facet_wrap(~ state)
+> geom_smooth(method = "lm")
+
+phyco_gg <- ggplot(data=dat2015, mapping = aes(x=sample_date,y=phyco_ugl)) + 
+  +     geom_point() +
+  +     facet_wrap(~ state)
+> geom_smooth(method = "lm")
+
+summary(dat2015$fluorometer_types)
+table(dat2015$florometer_types)
+dat2015$fluorometer_types
+dat2015(flurometer_types)
+
+#got errors
+table(mrg$waterbody_name)
+summary(mrg$waterbody_name)
+filter(mrg$waterbody_name)
+plot(phycoorder$sample_date,phycoorder$Phyco_ugl)
+plot(log1p(phycoorder$sample_date),(log1p(phycoorder$phyco_ugl))
+plot(log1p(mrg$chla_ugl),log1p(mrg$sample_date))
+
+summary(dat2015$fluorometer_type)
+Length     Class      Mode 
+2598 character character 
+> table(dat2015$fluorometer_type)
+
+Beagle  Other 
+2585     13 
+
+head(chlast)
+head(phycost)
