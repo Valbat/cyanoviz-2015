@@ -1,4 +1,4 @@
-
+library(tidyverse)
 library(dplyr)
 library(ggplot2)
 
@@ -229,13 +229,6 @@ table(dat2015$florometer_types)
 dat2015$fluorometer_types
 dat2015(flurometer_types)
 
-#got errors
-table(mrg$waterbody_name)
-summary(mrg$waterbody_name)
-filter(mrg$waterbody_name)
-plot(phycoorder$sample_date,phycoorder$Phyco_ugl)
-plot(log1p(phycoorder$sample_date),(log1p(phycoorder$phyco_ugl))
-plot(log1p(mrg$chla_ugl),log1p(mrg$sample_date))
 
 summary(dat2015$fluorometer_type)
 Length     Class      Mode 
@@ -247,3 +240,84 @@ Beagle  Other
 
 head(chlast)
 head(phycost)
+
+library(tidyverse)
+library(dplyr)
+library(ggplot2)
+dat2015 <- read.csv("data_clean_2015.csv", stringsAsFactors = FALSE) %>%
+  filter(!is.na(chla_ugl)) %>% 
+  filter(phyco_ugl>0.1) %>%
+  filter(chla_ugl>0) %>%
+  arrange(desc(chla_ugl),desc(phyco_ugl)) %>%
+  filter(dilution != "1:16") %>% 
+  filter(dilution != "1:2") %>% 
+  filter(dilution != "1:4") %>% 
+  filter(dilution != "1:8") %>% 
+  select(state, waterbody_id, waterbody_name, unique_id, chla_ugl, phyco_ugl, sample_date) %>% 
+  
+  mutate(log_chla = log(chla_ugl), log_phyco = log(phyco_ugl)) 
+
+chlaorder <- dat2015[order(-dat2015$chla_ugl),]
+chlast <- chlaorder[1:50,c(6,7,16,25)]
+phycoorder <- dat2015[order(-dat2015$phyco_ugl),]
+phycost <- phycoorder[1:50,c(6,7,16,26)]
+
+#merge function may not be the best for this data set
+mrg <- merge(chlast,phycost,by="state")
+
+dat2015 <- read.csv("data_clean_2015.csv", stringsAsFactors = FALSE) %>%
+  filter(!is.na(chla_ugl)) %>% 
+  filter(phyco_ugl>0.1) %>%
+  filter(chla_ugl>0) %>%
+  arrange(desc(chla_ugl),desc(phyco_ugl)) %>%
+  mutate(dilution = ifelse(is.na(dilution), "", dilution)) %>%
+  filter(dilution != "1:16") %>% 
+  filter(dilution != "1:2") %>% 
+  filter(dilution != "1:4") %>% 
+  filter(dilution != "1:8") %>% 
+  filter(sample_temp_c>20) %>%
+  filter(sample_temp_c<24) %>%
+  select(state, waterbody_id, unique_id, chla_ugl, phyco_ugl, sample_date) %>%
+  mutate(log_chla = log(chla_ugl), log_phyco = log(phyco_ugl))
+
+plot(dat2015$log_chla, dat2015$log_phyco)
+
+#summarize error message
+max_state <- dat2015%>% 
+  group_by(state) %>% 
+  summarize(max_log_chla = max(log_chla), max_log_phyco = max(log_phyco))
+
+dat2015 <- read.csv("data_clean_2015.csv", stringsAsFactors = FALSE) %>%
+  filter(!is.na(chla_ugl)) %>% 
+  filter(phyco_ugl>0.1) %>%
+  filter(chla_ugl>0) %>%
+  arrange(desc(chla_ugl),desc(phyco_ugl)) %>%
+  mutate(dilution = ifelse(is.na(dilution), "", dilution)) %>%
+  filter(dilution != "1:16") %>% 
+  filter(dilution != "1:2") %>% 
+  filter(dilution != "1:4") %>% 
+  filter(dilution != "1:8") %>% 
+  filter(sample_temp_c>20) %>%
+  filter(sample_temp_c<24) %>%
+  select(state, waterbody_id, unique_id, chla_ugl, phyco_ugl, sample_date,sample_temp_c)
+
+dat2015$sample_temp_c
+
+phycororder <- dat2015[order(-dat2015$phyco_ugl),]
+chlaorder <- dat2015[order(-dat2015$chla_ugl),]
+highphyco <- filter(phycororder, waterbody_id=="RI0007024L-02") %>%
+  select(state,waterbody_name,phyco_ugl,sample_date) 
+  
+warwickpond <- filter(dat2015,waterbody_id=="RI0007024L-02") %>%
+  select(state,waterbody_name,phyco_ugl,sample_date)
+  
+library(ggplot2)
+plot(density(log1p(warwickpond$phyco_ugl)))
+  
+arrange(desc(chla_ugl))
+highphyco <- select(waterbody_id="RI0007024L-02",chla_ugl,sample_date)
+
+ggplot(data=warwickpond)+
+geom_bar(mappping=aes(x=sample_date,y=phyco_ugl))  
+plot(log1p(warwickpond$phyco_ugl))
+plot(log1p(warwickpond[,3:4]))
