@@ -13,6 +13,9 @@ Ideas:
 #look at the highest 10 sample analysis per state by time 
 #then plot against health criteria
 
+#trying incorporating other monitoring data. Lakes with blooms, look at P, N, FE, optimum temp range, turbidity.
+
+
 
 Observaions:
 1.na's in station_id, station_descrip, sample-method, sample_depth,dilution, water_temp(1185),Chla (69),phyco (2)
@@ -34,6 +37,7 @@ Observaions:
 16. data.frame 2792 obs.of 30 variables
 17. Dilution column needs clean up
 18. Most of the samples were taken with Beagle, only 13 other. 
+19. Warwick pond (6 samples removed when temp range is inputted).
 
 
 Errors:
