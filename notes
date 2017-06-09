@@ -38,7 +38,8 @@ Observaions:
 17. Dilution column needs clean up
 18. Most of the samples were taken with Beagle, only 13 other. 
 19. Warwick pond (6 samples removed when temp range is inputted).
-
+20. Took a look at duplication of waerbody names in open refine and only one possible duplication (Lake Gardner(NH) & Gardner Lake (CT))
+    so can work off of waterbody names. 
 
 Errors:
 * error with creating density polt for phyco-resolved
