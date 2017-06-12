@@ -17,5 +17,6 @@ library(tidyr)
 waterbody_loca <- dat2015 %>%
   spread(waterbody_id,waterbody_name,fill=0)
 
-#fill=0 (instead of default NA is your
-#decision)
+stem(dat2015$waterbody_id)
+str(dat2015$waterbody_id)
+
