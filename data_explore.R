@@ -6,7 +6,7 @@ library(ggplot2)
 (dat2015 <- read.csv("data_clean_2015.csv", stringsAsFactors = FALSE) %>%filter(!is.na(chla_ugl))
 
 summarysumtbl_df(dat2015)
-count_2015 <- dat2015 %>% library(dplyr)
+  count_2015 <- dat2015 %>% 
   group_by(waterbody_id) %>% 
   count()
 count_2015
@@ -87,8 +87,8 @@ plot(density(log1p(nla$NTL)))
 [1] NA
 > mean(dat2015$chla_ugl)
 [1] NA
-> hist(dat2015$chla_ugl)
-> hist(log1p(dat2015$chla_ugl))
+hist(dat2015$chla_ugl)
+hist(log1p(dat2015$chla_ugl))
 
 #couldn't fix Density plot error "Error density.default(log1p(dat2015$chla_ugl)) : 
   'x' contains missing values
@@ -343,13 +343,14 @@ ggplot(data=warwickpond)+
   geom_plot(mapping=aes(x=sample_date,y=chla_ugl))
 geom
 
+
 dat2015 <- read_csv("may data_clean_2015.csv",guess_max = 2000) %>%
   filter(complete.cases(data.frame(chla_ugl,phyco_ugl)))%>%
   filter(chla_ugl > 0) %>% 
   filter(phyco_ugl > 0.1) %>%
   filter(dilution == "1:1") %>%
   filter(analysis_rep == "Primary") %>%
-  filter(fluorometer_type == "Beagle") %>%
+  filter(fluorometer_type == "Beagle")%>%
   filter(sample_temp_c > 20 & sample_temp_c < 24)
  
 warwickpond <- filter(dat2015,waterbody_id=="RI0007024L-02") %>%
@@ -404,3 +405,30 @@ table(dat2015$water_temp_c)
 
 temp_chla_gg <- ggplot(data = dat2015, mapping = aes(x=water_temp_c, y=chla_ugl)) + 
   geom_point()
+
+plot(dat2015$chla_ugl,dat2015$sample_temp_c,main="Samples collected within QAPP temperature range")
+  abline(h=20)%>%
+  abline(h=24)
+
+
+plot(dat2015$phyco_ugl,dat2015$sample_temp_c,main="Samples collected within QAPP temperature range")
+  abline(h=20)%>%
+  abline(h=24)
+
+Phyco_gg <- ggplot(data=dat2015, mapping = aes(x=sample_date,y=phyco_ugl)) + 
+  geom_point() +
+  facet_wrap(~ state) +
+  geom_smooth(method = "lm")
+phyco_gg
+
+phyco_ggcolor <- ggplot(data=dat2015, mapping = aes(x=sample_date,y=phyco_ugl,color=phyco_ugl)) + 
+  geom_point() +
+  facet_wrap(~ state) +
+  geom_smooth(method = "lm")
+phyco_ggcolor
+
+MAphyco<- filter(dat2015,state=="MA") %>%
+  select(state,waterbody_name,phyco_ugl,sample_date)
+
+waterbodies <- select(dat2015,state,waterbody_name,waterbody_id)
+
