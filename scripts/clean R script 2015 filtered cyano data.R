@@ -20,3 +20,7 @@ waterbody_loca <- dat2015 %>%
 stem(dat2015$waterbody_id)
 str(dat2015$waterbody_id)
 
+# write.xlsx
+
+
+
