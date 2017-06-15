@@ -10,7 +10,8 @@ dat2015 <- read_csv("may data_clean_2015.csv",guess_max = 2000) %>%
   filter(dilution == "1:1") %>%
   filter(analysis_rep == "Primary") %>%
   filter(fluorometer_type == "Beagle") %>%
-  filter(sample_temp_c > 20 & sample_temp_c < 24)
+  filter(sample_temp_c > 20 & sample_temp_c < 24)%>%
+  filter(sample_method==("Intergrated Sampler)
 
 #####################################################################
 #convert to wide format (used open refine and found no duplicate waterbody names)
@@ -129,8 +130,9 @@ str(dat2015$sample_depth_m)
 table(dat2015$sample_depth_m)
 ###############################################################
 #Look at depth to see if any relationships exist
-#row358 has a depth of 22 and it's near the beach, so wondering if this is a typo. 
+#row 359 has a depth of 22 and it's a deep water sample 
 #range is 1-5
 dat2015 %>%
   slice(358)
 
+####################################################################
