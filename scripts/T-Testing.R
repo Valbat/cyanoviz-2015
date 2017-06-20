@@ -65,23 +65,24 @@ names(maxtemporder)
 
 #get number of max water temps for phyco and chla/waterbody
  Cyanobac_WT<- dat2015 %>%
-  +   select(waterbody_name,water_temp_c,state,phyco_ugl,chla_ugl)%>%
-  +   group_by(waterbody_name,water_temp_c,phyco_ugl,chla_ugl)%>%
-  +   summarize(max_watertemp=max(water_temp_c))
+   select(waterbody_name,water_temp_c,state,phyco_ugl,chla_ugl)%>%
+   group_by(waterbody_name,water_temp_c,phyco_ugl,chla_ugl)%>%
+   summarize(max_watertemp=max(water_temp_c))
 
 maxtemporder<- Cyanobac_WT[order(-Cyanobac_WT$max_watertemp),]
 
-max_water_temp<- maxtemporder %>%
-  +   group_by(waterbody_name,state,phyco_ugl,chla_ugl) %>%
-  +   summarise(ntemp = n_distinct(max_watertemp))
+ggplot(data=maxtemporder, mapping=aes(x=max_watertemp,y=phyco_ugl))+
+   geom_point()
 
 max_water_temp<- maxtemporder %>%
   group_by(waterbody_name,phyco_ugl,chla_ugl) %>%
-  summarise(waterbody_name = n_distinct(waterbody_name))
+  summarise(count=n())
 
 ### holds no value written this way. 
+#############################################################################
+view(Cyanobac_WT):
 
-
+  
 
 
 
