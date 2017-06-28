@@ -34,29 +34,26 @@ Cyanobac_wt_max<-Cyanobac_WT%>%
 Cyanobac_wt_max
 ###########################################################################
 
-t.test(maxtemporder$max_watertemp~maxtemporder$phyco_ugl)
+mean(dat2015$water_temp_c,na.rm=TRUE)
 
+Cyanobac_mWT<- dat2015 %>%
+  select(waterbody_name,water_temp_c,state,phyco_ugl,chla_ugl)%>%
+  group_by(waterbody_name,water_temp_c,phyco_ugl,chla_ugl)%>%
+  summarize(mean_watertemp=mean(water_temp_c),
+            mean_phyco=mean(phyco_ugl),
+            mean_chla=mean(chla_ugl))
+
+Cyanobac_mWT<- dat2015 %>%
+  select(waterbody_name,water_temp_c,state,phyco_ugl,chla_ugl)%>%
+  group_by(waterbody_name,phyco_ugl,chla_ugl)%>%
+  summarize(mean_watertemp=mean(water_temp_c),
+            mean_phyco=mean(phyco_ugl),
+            mean_chla=mean(chla_ugl))
+
+t.test(x=dat2015$water_temp_c,y=dat2015$phyco_ugl)
+t.test(x=dat2015$water_temp_c,y=dat2015$chla_ugl)
 #############################################################################
 
-?indexing
-dat2015$chla_ugl %>%
-  subset(variable_a > x) %>%
-  transform(variable_c = variable_a/variable_b) %>%
-  head(100)
-help.start()
-##############################################################################
-
-head(maxtemporder)
-
-(maxtemporder[c("phyco_ugl","chla_ugl")])
-
-??transform
-##############################################################################
-
-names(maxtemporder)
-
-
-#####################################################################################
 #1. Make a wide frame with waterbody_name,state,max_
 #(rows), phyco_ugl,chla_ugl (cols), values = number of 
 #max water temps
