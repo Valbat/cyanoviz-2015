@@ -164,7 +164,7 @@ library(foreach)
 foreach(i=1:100)%do%rnorm(i)
 phycororder <- nonegphyco[order(-phyco_ugl),]
 ;
-> chlaorder <- dat2015[order(-dat2015$chla_ugl),]
+chlaorder <- dat2015[order(-dat2015$chla_ugl),]
 > View(chlaorder)
 > head(chlaorder)
 chlast <- chlaorder[1:50,c(6,7,16,25)]
@@ -202,11 +202,14 @@ colnames(mrgag) <- c("State","Chla","Phyco")
 plot(mrgag$Phyco,mgrag$State)
 
 filter(!is.na(chla_ugl)%>%filter(!is.na(phyco_ugl)))
-
+############################################################
 chlaorder <- dat2015[order(-dat2015$chla_ugl),]
 chlast <- chlaorder[1:50,c(6,7,16,25)]
 phycoorder <- dat2015[order(-dat2015$phyco_ugl),]
 phycost <- phycoorder[1:50,c(6,7,16,26)]
+
+##############################################################
+
 mrg <- merge(chlast,phycost,by="state")
 mrg$waterbody_name.x
 mrg$waterbody_name.y
