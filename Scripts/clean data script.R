@@ -11,3 +11,4 @@ dat2015 <- read_csv("may data_clean_2015.csv",guess_max = 2000) %>%
   filter(fluorometer_type == "Beagle") %>%
   filter(sample_temp_c > 20 & sample_temp_c < 24)
 
+
