@@ -37,9 +37,36 @@ Observaions:
 16. data.frame 2792 obs.of 30 variables
 17. Dilution column needs clean up
 18. Most of the samples were taken with Beagle, only 13 other. 
-19. Warwick pond (6 samples removed when temp range is inputted).
 20. Took a look at duplication of waerbody names in open refine and only one possible duplication (Lake Gardner(NH) & Gardner Lake (CT))
     so can work off of waterbody names. 
+21. Row 359 has a sample depth of 22, only one that is more than 5 in the data set
+
+(t.test info.
+            > t.test(x=dat2015$water_temp_c,y=dat2015$phyco_ugl)
+
+                Welch Two Sample t-test
+
+            data:  dat2015$water_temp_c and dat2015$phyco_ugl
+            t = -4.2261, df = 364.72, p-value = 3.008e-05
+            alternative hypothesis: true difference in means is not equal to 0
+            95 percent confidence interval:
+             -27.41531 -10.00351
+            sample estimates:
+            mean of x mean of y 
+             24.95304  43.66245 
+
+            > t.test(x=dat2015$water_temp_c,y=dat2015$chla_ugl)
+
+                Welch Two Sample t-test
+
+            data:  dat2015$water_temp_c and dat2015$chla_ugl
+            t = 103.9, df = 328.54, p-value < 2.2e-16
+            alternative hypothesis: true difference in means is not equal to 0
+            95 percent confidence interval:
+             23.08744 23.97855
+            sample estimates:
+            mean of x mean of y 
+            24.953037  1.420041 )
 
 Errors:
 * error with creating density polt for phyco-resolved
@@ -51,9 +78,9 @@ Errors:
 R questions
 1. Is there a R equation for calculating the CLT?
 2. I made a data frome of descending order of chla and phyco and when I merged the two they did not keep the descending order. 
-Why? Because I merged by State. Is there a way to merge by descending order? 
+Why? Because I merged by State. Is there a way to merge by descending order? all set
 
 
 Project Questions
-Do we want to see a relationship between states?
+
 
